@@ -30,6 +30,25 @@ window.socket.addEventListener("message", e => {
         window.fatal_error_occurred = true
         window.fatal_error = data
     }
+ else if(type === "convert_file") {
+        if(data.success) {
+            console.log('File converted successfully:', data.output_path);
+        } else {
+            const sm_error = document.getElementsByClassName("sm-error")[0];
+            sm_error.textContent = "Error converting file: " + data.error;
+            sm_error.classList.remove('hide');
+            sm_error.animate([
+                { opacity: "100%" },
+                { opacity: "100%" },
+                { opacity: "100%" },
+                { opacity: "100%" },
+                { opacity: "0%" }
+            ], { duration: 3500 });
+            setTimeout(() => {
+                sm_error.classList.add('hide');
+            }, 3480);
+        }
+    }
 
     wait_to_receive_arr[type] = data
 });

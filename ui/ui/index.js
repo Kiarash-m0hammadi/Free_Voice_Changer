@@ -1,5 +1,3 @@
-
-
 window.addEventListener('DOMContentLoaded', () => {
 
 const DEV_DONT_CONNECT = false
@@ -104,7 +102,6 @@ async function wait_until_connected() {
 
 
 
-
 const loading_screen = document.getElementsByClassName("loading-screen")[0]
 const loading_text = document.getElementsByClassName("ls-loading")[0]
 const progress_bar = document.getElementsByClassName("ls-progress")[0]
@@ -175,7 +172,6 @@ init_ui()
 
 
 
-
 const controls = document.getElementsByClassName("controls")[0]
 const controls_enabled_block = document.getElementsByClassName("controls-enabled-block")[0]
 const controls_enabled_warning = document.getElementsByClassName("controls-enabled-warning")[0]
@@ -188,6 +184,51 @@ const quality_option = document.getElementsByClassName("voice-option-quality")[0
 const voice_option_value = voice_option.querySelector(".voice-option-value span")
 const voice_option_quality = document.getElementsByClassName("voice-option-quality")[0]
 const voice_option_quality_latency = document.getElementsByClassName("voice-option-quality-latency")[0]
+
+// Source file controls
+const source_btn = document.querySelector('.voice-option-source-btn')
+const source_unset = document.querySelector('.voice-option-source-unset')
+const source_set = document.querySelector('.voice-option-source-set')
+const source_exit = document.querySelector('.voice-option-source-exit')
+
+// Handle source file selection
+source_btn.addEventListener('click', async () => {
+    const file_paths = await window.electron_api.open_dialog()
+    if (file_paths !== -1) {
+        const file_path = file_paths[0]
+        if (file_path.endsWith('.wav')) {
+            let file_name = file_path.replace(/^.*[\\\/]/, '')
+            source_unset.classList.add('hide')
+            source_set.classList.remove('hide')
+            source_set.querySelector('.voice-option-source-btn-inner').textContent = file_name
+            
+            // Send file for conversion
+            socket.send(`convert_file:${JSON.stringify({
+                source_path: file_path
+            })}`)
+        } else {
+            sm_error.textContent = "Input file must be a .wav audio file."
+            sm_error.classList.remove('hide')
+            sm_error.animate([
+                { opacity: "100%" },
+                { opacity: "100%" },
+                { opacity: "100%" },
+                { opacity: "100%" },
+                { opacity: "0%" }
+            ], { duration: 3500 })
+            setTimeout(() => {
+                sm_error.classList.add('hide')
+            }, 3480)
+        }
+    }
+})
+
+// Handle source file removal
+source_exit.addEventListener('click', () => {
+    source_set.classList.add('hide')
+    source_unset.classList.remove('hide')
+    source_set.querySelector('.voice-option-source-btn-inner').textContent = 'N/A'
+})
 
 const toggle = document.getElementsByClassName("toggle")[0]
 const toggle_btn = document.getElementsByClassName("toggle-btn")[0]
@@ -254,7 +295,6 @@ controls_enabled_block.addEventListener("mouseleave", () => {
         controls_enabled_warning.classList.add("hide")
     }
 })
-
 
 
 
@@ -665,7 +705,6 @@ setInterval(() => {
         modal_bg.classList.remove("hide")
     }
 }, 500)
-
 
 
 

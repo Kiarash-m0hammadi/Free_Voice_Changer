@@ -301,6 +301,64 @@ body {
     font-weight: 900;
     font-size: 14px;
 }
+
+.voice-option-source {
+    font-size: 18px;
+    margin: 15px 0;
+    padding: 15px 20px;
+    background: #f5f5f5;
+}
+
+.voice-option-source-btn {
+    background: #2c2c2c;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.voice-option-source-btn:hover {
+    background: #353535;
+}
+
+.voice-option-source-btn-inner {
+    font-size: 14px;
+    color: #fff;
+}
+
+.voice-option-source-sub {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.voice-option-source-set {
+    position: relative;
+}
+
+.voice-option-source-title {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.voice-option-source-exit {
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.voice-option-source-exit:hover {
+    opacity: 1;
+}
+
 .voice-option-slider {
     /* display: inline-block; */
     margin-top: 12px;
@@ -339,8 +397,6 @@ body {
     height: auto;
     margin-top: 80px;
 }
-
-
 
 .toggle-disabled {
     filter: grayscale();
@@ -393,8 +449,6 @@ body {
     transition: 0.2s;
 }
 
-
-
 .running-indication {
     position: absolute;
     border: 8px solid #8392FF;
@@ -403,10 +457,6 @@ body {
     box-sizing: border-box;
     z-index: -1;
 }
-
-
-
-
 
 .slider {
     height: 11px;
@@ -430,15 +480,6 @@ body {
 .slider-quality {
     background: #57C4E3;
 }
-
-
-
-
-
-
-
-
-
 
 .menu {
     position: absolute;
@@ -644,7 +685,6 @@ body {
     z-index: 1;
 }
 
-
 .credits-btn {
     position: absolute;
     bottom: 10px;
@@ -661,8 +701,6 @@ body {
     width: 90%;
     user-select: text;
 }
-
-
 
 .modal {
     position: absolute;
@@ -757,7 +795,6 @@ body {
     width: calc(110px - 15px);
 }
 
-
 .btn {
     display: inline-block;
     width: 265px;
@@ -786,7 +823,6 @@ body {
     box-sizing: border-box;
     box-shadow: 0 5px 5px #3660a027;
 }
-
 
 .fatal-error {
     width: 600px;
