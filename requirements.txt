@@ -1,12 +1,12 @@
 glob2==0.7
 tqdm==4.62.3
 librosa==0.8.1
-numpy==1.22.0
-scipy==1.7.2
+numpy==1.22.4
+scipy==1.9.3
 tensorboard==2.7.0
-torch==2.0.0
-torchvision==0.15.1
-torch-directml==0.2.0.dev230426 
+torch==2.7.0.dev20250308+cu128
+torchvision==0.22.0.dev20250309+cu128
+torchaudio==2.6.0.dev20250309+cu128
 webrtcvad==2.0.10
 sounddevice==0.4.6
 soundfile==0.12.1
