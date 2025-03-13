@@ -346,43 +346,41 @@ def get_data(client, server, msg):
         elif type == "set_input_threshold":
             input_threshold = data
             server.send_message_to_all("set_input_threshold:" + json.dumps(True))
-            
+
         elif type == "convert_file":
             source_path = data["source_path"]
             output_path = os.path.join(directory, "converted_output.wav")
-            
+
             try:
                 convert(source_path, output_path)
-                server.send_message_to_all("convert_file:" + json.dumps({
-                    "success": True,
-                    "output_path": output_path
-                }))
+                server.send_message_to_all(
+                    "convert_file:"
+                    + json.dumps({"success": True, "output_path": output_path})
+                )
             except Exception as e:
-                server.send_message_to_all("convert_file:" + json.dumps({
-                    "success": False,
-                    "error": str(e)
-                }))
+                server.send_message_to_all(
+                    "convert_file:" + json.dumps({"success": False, "error": str(e)})
+                )
 
         elif type == "set_latency":
             print(data)
             set_latency(data)
             server.send_message_to_all("set_quality:" + json.dumps(True))
-            
+
         elif type == "convert_file":
             source_path = data["source_path"]
             output_path = os.path.join(directory, "converted_output.wav")
-            
+
             try:
                 convert(source_path, output_path)
-                server.send_message_to_all("convert_file:" + json.dumps({
-                    "success": True,
-                    "output_path": output_path
-                }))
+                server.send_message_to_all(
+                    "convert_file:"
+                    + json.dumps({"success": True, "output_path": output_path})
+                )
             except Exception as e:
-                server.send_message_to_all("convert_file:" + json.dumps({
-                    "success": False,
-                    "error": str(e)
-                }))
+                server.send_message_to_all(
+                    "convert_file:" + json.dumps({"success": False, "error": str(e)})
+                )
 
         elif type == "get_max_latency_time":
             highest_time = -1
